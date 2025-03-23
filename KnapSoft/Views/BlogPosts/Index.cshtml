@@ -1,0 +1,33 @@
+﻿@model IEnumerable<KnapSoft.Models.BlogPost>
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="display-6">📰 Blog</h1>
+        @if (User.IsInRole("Admin"))
+        {
+            <a asp-action="Create" class="btn btn-primary">+ Přidat článek</a>
+        }
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        @foreach (var post in Model)
+        {
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0">
+                    @if (!string.IsNullOrEmpty(post.CoverImageUrl))
+                    {
+                        <img src="@post.CoverImageUrl" class="card-img-top" alt="@post.Title">
+                    }
+                    <div class="card-body">
+                        <h5 class="card-title">@post.Title</h5>
+                        <p class="text-muted small">@post.Summary</p>
+                        <a asp-action="Details" asp-route-id="@post.Id" class="btn btn-outline-primary btn-sm">Číst více</a>
+                    </div>
+                    <div class="card-footer bg-white text-muted small border-0">
+                        Publikováno: @post.CreatedAt.ToString("d. MMMM yyyy")
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

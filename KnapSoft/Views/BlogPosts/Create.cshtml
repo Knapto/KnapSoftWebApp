@@ -1,0 +1,32 @@
+﻿@model KnapSoft.Models.BlogPost
+
+<div class="container py-5" style="max-width: 800px;">
+    <h2 class="mb-4">📝 @ViewData["Title"]</h2>
+
+    <form asp-action="@ViewContext.RouteData.Values["action"]">
+        <div class="mb-3">
+            <label asp-for="Title" class="form-label">Nadpis</label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Summary" class="form-label">Shrnutí</label>
+            <textarea asp-for="Summary" class="form-control" rows="3"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="CoverImageUrl" class="form-label">Obrázek (URL)</label>
+            <input asp-for="CoverImageUrl" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Content" class="form-label">HTML obsah</label>
+            <textarea asp-for="Content" class="form-control font-monospace" rows="15" placeholder="Sem napiš HTML kód..."></textarea>
+            <span asp-validation-for="Content" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Uložit</button>
+        <a asp-action="Index" class="btn btn-link">Zpět na blog</a>
+    </form>
+</div>

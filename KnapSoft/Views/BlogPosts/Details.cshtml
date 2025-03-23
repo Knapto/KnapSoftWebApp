@@ -1,0 +1,25 @@
+﻿@model KnapSoft.Models.BlogPost
+
+<div class="container py-5">
+    <article class="mx-auto" style="max-width: 850px;">
+        <h1 class="mb-2">@Model.Title</h1>
+        <p class="text-muted">Publikováno: @Model.CreatedAt.ToString("d. MMMM yyyy")</p>
+
+        @if (!string.IsNullOrEmpty(Model.CoverImageUrl))
+        {
+            <img src="@Model.CoverImageUrl" class="img-fluid rounded shadow-sm mb-4" alt="@Model.Title" />
+        }
+
+        <div class="bootstrap-content">
+            @Html.Raw(Model.Content)
+        </div>
+
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="mt-4 d-flex gap-2">
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-secondary btn-sm">Upravit</a>
+                <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-outline-danger btn-sm">Smazat</a>
+            </div>
+        }
+    </article>
+</div>

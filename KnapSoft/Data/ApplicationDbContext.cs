@@ -13,6 +13,7 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<Product> Products { get; set; }
     public DbSet<KnapSoft.Models.Solution> Solutions { get; set; }
     public DbSet<SolutionProduct> SolutionProducts { get; set; }
+    public DbSet<BlogPost> BlogPosts { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
