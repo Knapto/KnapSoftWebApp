@@ -1,0 +1,35 @@
+﻿@using KnapSoft.Models.ViewModels
+@model SolutionViewModel
+
+<form asp-action="Create">
+    <div>
+        <label>Name</label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+    <div>
+        <label>Description</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+    <div>
+        <label>Price</label>
+        <input asp-for="Price" class="form-control" />
+    </div>
+    <div>
+        <label>Monthly Price</label>
+        <input asp-for="MonthlyPrice" class="form-control" />
+    </div>
+
+    <div>
+        <label>Products</label>
+        @for (int i = 0; i < Model.Products.Count; i++)
+        {
+            <div>
+                <input type="checkbox" asp-for="@Model.Products[i].IsSelected" />
+                <input type="hidden" asp-for="@Model.Products[i].ProductId" />
+                @Model.Products[i].Name
+            </div>
+        }
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>

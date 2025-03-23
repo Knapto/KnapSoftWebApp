@@ -1,0 +1,44 @@
+﻿@model KnapSoft.Models.Product
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<div class="container py-4">
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+            <h1 class="card-title display-6">@Model.Name</h1>
+            <p class="text-muted fs-6">@Model.Description</p>
+
+            <div class="row mb-4">
+                <div class="col-md-6 mb-2">
+                    <div class="bg-light rounded p-3 h-100">
+                        <h6 class="mb-1 text-uppercase text-muted">Cena produktu</h6>
+                        <div class="fs-4 fw-bold text-primary">@Model.Price Kč</div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <div class="bg-light rounded p-3 h-100">
+                        <h6 class="mb-1 text-uppercase text-muted">Použití</h6>
+                        <div class="fs-6 text-muted">Tento produkt může být součástí jednoho nebo více řešení.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-muted mt-4">
+                <small>
+                    Produkt „<strong>@Model.Name</strong>“ je samostatný prvek, který lze kombinovat s různými řešeními.
+                    Pokud vás zajímá, kde se používá, můžete se podívat do detailu jednotlivých řešení.
+                </small>
+            </div>
+        </div>
+
+        <div class="card-footer bg-white border-top-0 d-flex justify-content-between">
+            <a asp-action="Index" class="btn btn-outline-secondary btn-sm">← Zpět na seznam produktů</a>
+            @if (User.IsInRole("Admin"))
+            {
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary btn-sm">Upravit produkt</a>
+            }
+        </div>
+    </div>
+</div>
