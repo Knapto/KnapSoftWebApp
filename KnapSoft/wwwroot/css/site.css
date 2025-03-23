@@ -27,7 +27,119 @@ body {
     transition: background-color 0.2s ease-in-out;
 }
 
-    .badge-hover:hover {
-        background-color: #198754 !important; /* Bootstrap success */
-        color: white !important;
+.badge-hover:hover {
+    background-color: #198754 !important; /* Bootstrap success */
+    color: white !important;
+}
+
+.highlight-card {
+    border: 2px solid #ffc107;
+    position: relative;
+}
+
+.highlight-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: #ffc107;
+    color: #212529;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.highlight-card {
+    border: 2px solid #ffc107;
+    position: relative;
+}
+
+.highlight-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: #ffc107;
+    color: #212529;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.rich-content {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #333;
+}
+
+    .rich-content h1,
+    .rich-content h2,
+    .rich-content h3 {
+        margin-top: 1.2em;
+        margin-bottom: 0.5em;
+        font-weight: 600;
+    }
+
+    .rich-content p {
+        margin-bottom: 1rem;
+    }
+
+    .rich-content ul {
+        padding-left: 1.2rem;
+        list-style: disc;
+    }
+
+    .rich-content img {
+        max-width: 100%;
+        height: auto;
+        margin: 1rem 0;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+.bootstrap-content {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #212529;
+}
+
+    .bootstrap-content h1,
+    .bootstrap-content h2,
+    .bootstrap-content h3 {
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+    }
+
+    .bootstrap-content p {
+        margin-bottom: 1rem;
+    }
+
+    .bootstrap-content ul,
+    .bootstrap-content ol {
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+    }
+
+    .bootstrap-content img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 0.5rem;
+        margin: 1rem 0;
+        box-shadow: 0 0 10px rgba(0,0,0,0.05);
     }

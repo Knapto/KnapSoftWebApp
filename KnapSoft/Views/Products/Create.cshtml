@@ -27,6 +27,11 @@
                 <input asp-for="Price" class="form-control" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
+            <div class="mb-3">
+                <label asp-for="LargeDescription" class="form-label">HTML rozšířený popis</label>
+                <textarea asp-for="LargeDescription" rows="15" class="form-control font-monospace" placeholder="Vložte vlastní HTML (Bootstrap)..."></textarea>
+                <span asp-validation-for="LargeDescription" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

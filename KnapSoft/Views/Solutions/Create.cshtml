@@ -18,6 +18,11 @@
         <label>Monthly Price</label>
         <input asp-for="MonthlyPrice" class="form-control" />
     </div>
+    <div class="mb-3">
+        <label asp-for="LargeDescription" class="form-label">HTML rozšířený popis</label>
+        <textarea asp-for="LargeDescription" rows="15" class="form-control font-monospace" placeholder="Vložte vlastní HTML (Bootstrap)..."></textarea>
+        <span asp-validation-for="LargeDescription" class="text-danger"></span>
+    </div>
 
     <div>
         <label>Products</label>

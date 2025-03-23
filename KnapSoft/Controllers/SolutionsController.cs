@@ -62,6 +62,7 @@ namespace KnapSoft.Controllers
                 {
                     Name = vm.Name,
                     Description = vm.Description,
+                    LargeDescription = vm.LargeDescription,
                     Price = vm.Price,
                     MonthlyPrice = vm.MonthlyPrice,
                     SolutionProducts = vm.Products
@@ -94,6 +95,7 @@ namespace KnapSoft.Controllers
                 Id = solution.Id,
                 Name = solution.Name,
                 Description = solution.Description,
+                LargeDescription = solution.LargeDescription,
                 Price = solution.Price,
                 MonthlyPrice = solution.MonthlyPrice,
                 Products = allProducts.Select(p => new ProductCheckbox
@@ -130,6 +132,7 @@ namespace KnapSoft.Controllers
             solution.Description = vm.Description;
             solution.Price = vm.Price;
             solution.MonthlyPrice = vm.MonthlyPrice;
+            solution.LargeDescription = vm.LargeDescription;
 
             // Odebrání starých vztahů
             solution.SolutionProducts.Clear();

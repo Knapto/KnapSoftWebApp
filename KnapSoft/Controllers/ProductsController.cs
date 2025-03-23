@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace KnapSoft.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ProductsController : Controller
     {
         private readonly ApplicationDbContext _context;

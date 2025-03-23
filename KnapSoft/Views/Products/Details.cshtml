@@ -8,7 +8,9 @@
     <div class="card shadow-sm border-0">
         <div class="card-body">
             <h1 class="card-title display-6">@Model.Name</h1>
-            <p class="text-muted fs-6">@Model.Description</p>
+            <div class="bootstrap-content">
+                @Html.Raw(Model.LargeDescription)
+            </div>
 
             <div class="row mb-4">
                 <div class="col-md-6 mb-2">
@@ -34,9 +36,9 @@
         </div>
 
         <div class="card-footer bg-white border-top-0 d-flex justify-content-between">
-            <a asp-action="Index" class="btn btn-outline-secondary btn-sm">← Zpět na seznam produktů</a>
             @if (User.IsInRole("Admin"))
             {
+                <a asp-action="Index" class="btn btn-outline-secondary btn-sm">← Zpět na seznam produktů</a>
                 <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary btn-sm">Upravit produkt</a>
             }
         </div>
