@@ -1,8 +1,124 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Hlavní strana";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="fw-bold text-dark">🛠️ Tvořím moderní weby a systémy, které pomáhají podnikání růst</h1>
+        <p class="lead text-muted">Od jednoduchého webu až po pokročilý systém na míru. Postaveno na spolehlivém a bezpečném .NET základu.</p>
+        <a href="#reseni" class="btn btn-primary btn-lg mt-3">Zobrazit řešení</a>
+    </div>
+
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm bg-light-subtle">
+                <div class="card-body">
+                    <h5 class="fw-semibold">📦 Řešení na míru</h5>
+                    <p class="text-muted">E-shop, rezervační systém, CRM nebo interní systém pro vaši firmu. Navrhneme řešení podle vašich potřeb.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm bg-light-subtle">
+                <div class="card-body">
+                    <h5 class="fw-semibold">⚙️ Postaveno na .NET</h5>
+                    <p class="text-muted">Moderní a bezpečná technologie od Microsoftu. Rychlá, spolehlivá a snadno rozšiřitelná.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm bg-light-subtle">
+                <div class="card-body">
+                    <h5 class="fw-semibold">🚀 Připraveno na růst</h5>
+                    <p class="text-muted">Začněte jednoduše, ale s možností růst. Web nebo systém rozšíříme podle vývoje vašeho podnikání.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="mb-5" />
+
+    <div id="reseni" class="mb-5">
+        <h2 class="fw-semibold text-dark text-center mb-4">💼 Nabízená řešení</h2>
+        <p class="text-center text-muted mb-5">Každé řešení je připraveno tak, aby odpovídalo konkrétním potřebám vašeho oboru. Kombinujeme efektivní funkce, moderní technologie a jednoduché ovládání.</p>
+
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card border-0 shadow-sm h-100 bg-white">
+                    <div class="card-body">
+                        <h5 class="fw-semibold mb-2">🛒 E-shop</h5>
+                        <p class="text-muted">Prodej produktů i služeb s napojením na platební brány, fakturaci a správu objednávek. Vhodné pro menší firmy i tvůrce online obsahu.</p>
+                        <a href="/reseni/ecommerce-mini" class="text-primary">Zjistit více →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card border-0 shadow-sm h-100 bg-white">
+                    <div class="card-body">
+                        <h5 class="fw-semibold mb-2">🍕 Systém pro restaurace a bistra</h5>
+                        <p class="text-muted">Objednávky u stolu přes QR, rezervace, rozvoz, sklad, menu i docházka personálu – vše v jednom systému.</p>
+                        <a href="/reseni/restaurace-plus" class="text-primary">Zjistit více →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card border-0 shadow-sm h-100 bg-white">
+                    <div class="card-body">
+                        <h5 class="fw-semibold mb-2">📊 CRM systém</h5>
+                        <p class="text-muted">Zákaznická péče, historie objednávek, segmentace, e-mail kampaně. Mějte přehled o svých klientech a budujte vztah.</p>
+                        <a href="/reseni/crm-system" class="text-primary">Zjistit více →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card border-0 shadow-sm h-100 bg-white">
+                    <div class="card-body">
+                        <h5 class="fw-semibold mb-2">📋 Docházkový systém</h5>
+                        <p class="text-muted">Snadná evidence příchodů a odchodů, přehledné výstupy, zabezpečené přihlašování pro zaměstnance.</p>
+                        <a href="/reseni/dochazka" class="text-primary">Zjistit více →</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Přidej další dle potřeby -->
+        </div>
+    </div>
+
+    <hr class="my-5" />
+
+    <div class="text-center mb-5">
+        <h2 class="fw-semibold text-dark">📚 Nejnovější z blogu</h2>
+    </div>
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <h6 class="fw-semibold text-dark">💭 Proč nestačí jen Facebook?</h6>
+                    <p class="text-muted small">Vysvětlujeme, proč je vlastní web důležitější než jen firemní profil na sociální síti.</p>
+                    <a href="/blog/proc-nestaci-facebook" class="text-primary small">Přečíst článek →</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <h6 class="fw-semibold text-dark">🔒 Bezpečnost v .NETu a databázích</h6>
+                    <p class="text-muted small">Zabezpečení nemusí být složité – podívej se, jak o něj v našich aplikacích pečujeme.</p>
+                    <a href="/blog/bezpecnost-v-dotnetu" class="text-primary small">Přečíst článek →</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <h6 class="fw-semibold text-dark">⚙️ Proč .NET?</h6>
+                    <p class="text-muted small">Jedna technologie, neomezené možnosti. V článku rozebíráme, proč je .NET skvělou volbou i pro tebe.</p>
+                    <a href="/blog/proc-dotnet" class="text-primary small">Přečíst článek →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <a href="/kontakt" class="btn btn-outline-primary btn-lg">Chci navrhnout řešení pro svou firmu</a>
+    </div>
 </div>
