@@ -1,4 +1,4 @@
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using KnapSoft.Models;
 
@@ -27,5 +27,27 @@ public class HomeController : Controller
     public IActionResult Error()
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    }
+
+    public IActionResult ProKoho()
+    {
+        return View();
+    }
+
+    public IActionResult Jak()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Kontakt(string Name, string Email, string Message, [FromServices] EmailService emailService)
+    {
+        var subject = $"Zpráva z kontaktního formuláře – {Name}";
+        var body = $"Jméno: {Name}\nEmail: {Email}\nZpráva:\n{Message}";
+
+        await emailService.SendEmailAsync(Email, subject, body);
+
+        TempData["Message"] = "Děkujeme za zprávu. Ozveme se co nejdříve.";
+        return RedirectToAction("Kontakt");
     }
 }

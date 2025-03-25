@@ -17,7 +17,18 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
-builder.WebHost.UseUrls("http://0.0.0.0:5000");
+builder.Services.AddTransient<EmailService>();
+
+//builder.WebHost.UseUrls("http://0.0.0.0:5000");
+
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(5000); // HTTP
+    options.ListenAnyIP(5001, listenOptions =>
+    {
+        listenOptions.UseHttps(); // HTTPS
+    });
+});
 
 var app = builder.Build();
 
