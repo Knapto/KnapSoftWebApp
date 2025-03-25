@@ -38,6 +38,11 @@ public class HomeController : Controller
     {
         return View();
     }
+    public IActionResult Kontakt()
+    {
+        return View();
+    }
+
 
     [HttpPost]
     public async Task<IActionResult> Kontakt(string Name, string Email, string Message, [FromServices] EmailService emailService)
