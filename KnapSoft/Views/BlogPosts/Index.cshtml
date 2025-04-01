@@ -1,33 +1,32 @@
 ﻿@model IEnumerable<KnapSoft.Models.BlogPost>
 
-<div class="container py-4">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="display-6">📰 Blog</h1>
-        @if (User.IsInRole("Admin"))
-        {
-            <a asp-action="Create" class="btn btn-primary">+ Přidat článek</a>
-        }
+<h1 class="dashboard-title">📰 Blog</h1>
+@if (User.IsInRole("Admin"))
+{
+    <div class="text-end mb-4">
+        <a asp-action="Create" class="btn btn-primary">+ Přidat článek</a>
     </div>
+}
 
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        @foreach (var post in Model)
-        {
-            <div class="col">
-                <div class="card h-100 shadow-sm border-0">
-                    @if (!string.IsNullOrEmpty(post.CoverImageUrl))
-                    {
-                        <img src="@post.CoverImageUrl" class="card-img-top" alt="@post.Title">
-                    }
-                    <div class="card-body">
-                        <h5 class="card-title">@post.Title</h5>
-                        <p class="text-muted small">@post.Summary</p>
-                        <a asp-action="Details" asp-route-id="@post.Id" class="btn btn-outline-primary btn-sm">Číst více</a>
+<div class="dashboard-grid">
+    @foreach (var post in Model)
+    {
+        var detailUrl = Url.Action("Details", new { id = post.Id });
+        <a class="tile-link" href="@detailUrl">
+            <div class="tile tile-solution">
+                @if (!string.IsNullOrEmpty(post.CoverImageUrl))
+                {
+                    <div class="mb-3">
+                        <img src="@post.CoverImageUrl" alt="@post.Title" class="img-fluid rounded shadow-sm w-100" style="max-height: 150px; object-fit: cover;">
                     </div>
-                    <div class="card-footer bg-white text-muted small border-0">
-                        Publikováno: @post.CreatedAt.ToString("d. MMMM yyyy")
-                    </div>
+                }
+                <h5 class="tile-title">@post.Title</h5>
+                <p class="tile-description">@post.Summary</p>
+                <div class="d-flex justify-content-between align-items-end mt-auto">
+                    <span class="text-light opacity-75 small">Publikováno: @post.CreatedAt.ToString("d. MMMM yyyy")</span>
+                    <span class="btn btn-outline-primary btn-sm">Číst více</span>
                 </div>
             </div>
-        }
-    </div>
+        </a>
+    }
 </div>

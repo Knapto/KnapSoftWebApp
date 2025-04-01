@@ -1,40 +1,62 @@
-﻿document.addEventListener("DOMContentLoaded", function () {
-    const chatBtn = document.getElementById("chatButton");
-    const chatBox = document.getElementById("chatBox");
-    const closeBtn = document.getElementById("closeChat");
-    const sendBtn = document.getElementById("sendMessage");
-    const userInput = document.getElementById("userInput");
-    const chatMessages = document.getElementById("chatMessages");
+﻿document.addEventListener('DOMContentLoaded', () => {
+    const logo = document.getElementById('animated-logo');
+    const content = document.getElementById('dashboard-content');
+    const loader = document.getElementById('loader');
+    const finalLogoContainer = document.getElementById('animated-logo-container');
+    const fixedLogo = document.getElementById('animated-logo-fixed');
 
-    if (chatBtn && chatBox && closeBtn && sendBtn && userInput && chatMessages) {
-        chatBtn.addEventListener("click", () => {
-            chatBox.style.display = "block";
-        });
+    const isFirstVisit = !localStorage.getItem('visited');
 
-        closeBtn.addEventListener("click", () => {
-            chatBox.style.display = "none";
-        });
+    if (!logo || !content || !loader) return;
 
-        sendBtn.addEventListener("click", async () => {
-            const text = userInput.value.trim();
-            if (!text) return;
+    // Nastavíme loga
+    const text1 = "Knap";
+    const text2 = "Software";
+    const typingSpeed = 100;
+    let index = 0;
 
-            chatMessages.innerHTML += `<div><strong>Vy:</strong> ${text}</div>`;
-            userInput.value = "";
+    if (isFirstVisit) {
+        logo.innerHTML = "<span class='knap'></span><span class='soft'></span>";
+        const knapSpan = document.querySelector('.knap');
+        const softSpan = document.querySelector('.soft');
 
-            try {
-                const response = await fetch("/api/chat", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ message: text })
-                });
+        knapSpan.style.color = "#ffffff";
+        softSpan.style.color = "#FFD700";
+        knapSpan.style.fontFamily = "'Poppins', sans-serif";
+        softSpan.style.fontFamily = "'Poppins', sans-serif";
 
-                const data = await response.json();
-                chatMessages.innerHTML += `<div><strong>KnapBot:</strong> ${data.reply}</div>`;
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            } catch (error) {
-                chatMessages.innerHTML += `<div class="text-danger"><strong>KnapBot:</strong> Došlo k chybě.</div>`;
+        // Spuštění psaní
+        function typeText() {
+            if (index < text1.length) {
+                knapSpan.textContent += text1[index];
+            } else if (index < text1.length + text2.length) {
+                softSpan.textContent += text2[index - text1.length];
+            } else {
+                logo.classList.add('flash');
+                setTimeout(() => {
+                    loader.classList.add('fade-out');
+                    setTimeout(() => {
+                        loader.style.display = 'none';
+                        finalLogoContainer?.classList.remove('d-none');
+                        finalLogoContainer?.classList.add('logo-move-animation'); // animace pouze poprvé
+                        content.classList.remove('d-none');
+                        content.classList.add('fade-in');
+                        localStorage.setItem('visited', 'true'); // uložíme návštěvu
+                    }, 1000);
+                }, 1200);
+                return;
             }
-        });
+            index++;
+            setTimeout(typeText, typingSpeed);
+        }
+
+        setTimeout(typeText, 300);
+
+    } else {
+        // Běžný návrat - bez animace
+        loader.style.display = 'none';
+        finalLogoContainer?.classList.remove('d-none');
+        content.classList.remove('d-none');
+        content.classList.add('fade-in');
     }
 });

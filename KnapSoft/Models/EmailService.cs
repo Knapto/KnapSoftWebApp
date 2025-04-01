@@ -11,28 +11,25 @@ public class EmailService
         _config = config;
     }
 
-    public async Task SendEmailAsync(string from, string subject, string body)
+    public async Task SendEmailAsync(string fromEmail, string subject, string body)
     {
-        var smtp = _config.GetSection("Smtp");
-        var client = new SmtpClient(smtp["Host"], int.Parse(smtp["Port"]))
+        var smtpClient = new SmtpClient(_config["Smtp:Host"])
         {
-            Credentials = new NetworkCredential(smtp["User"], smtp["Password"]),
-            EnableSsl = bool.Parse(smtp["EnableSsl"])
+            Port = int.Parse(_config["Smtp:Port"]),
+            Credentials = new NetworkCredential(_config["Smtp:Username"], _config["Smtp:Password"]),
+            EnableSsl = true // důležité pro Webglobe!
         };
 
-        var message = new MailMessage
+        var mailMessage = new MailMessage
         {
-            From = new MailAddress(smtp["User"]),
+            From = new MailAddress(_config["Smtp:Username"]),
             Subject = subject,
             Body = body,
-            IsBodyHtml = false
+            IsBodyHtml = false,
         };
 
-        message.To.Add(smtp["User"]);
+        mailMessage.To.Add(_config["Smtp:ToEmail"]);
 
-        if (!string.IsNullOrEmpty(from))
-            message.ReplyToList.Add(new MailAddress(from));
-
-        await client.SendMailAsync(message);
+        await smtpClient.SendMailAsync(mailMessage);
     }
 }

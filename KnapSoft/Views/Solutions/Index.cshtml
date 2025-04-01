@@ -6,96 +6,82 @@
     var rest = Model.Skip(3).ToList();
 }
 
-<div class="container py-4">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="display-6">Dostupná řešení</h1>
-        @if (User.IsInRole("Admin"))
-        {
-            <a class="btn btn-primary" asp-action="Create">+ Přidat nové řešení</a>
-        }
-    </div>
+<h1 class="dashboard-title">Dostupná řešení</h1>
 
-    <h4 class="mb-3">🔝 Nejoblíbenější řešení</h4>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-5">
-        @foreach (var item in top3)
-        {
-            <div class="col">
-                <a asp-action="Details"
-                   asp-route-id="@item.Id"
-                   class="text-decoration-none text-dark">
-                    <div class="card h-100 shadow border-0 hover-shadow highlight-card">
-                        <div class="highlight-badge">TOP</div>
-                        <div class="card-body">
-                            <h5 class="card-title">@item.Name</h5>
-                            <p class="text-muted small">@item.Description</p>
-                            <div class="row text-center">
-                                <div class="col">
-                                    <div class="bg-light rounded p-2">
-                                        <div class="small text-muted">Jednorázově</div>
-                                        <div class="fw-bold text-primary">@item.Price.ToString("N0") Kč</div>
-                                    </div>
-                                </div>
-                                <div class="small text-muted">Nebo</div>
-                                <div class="col">
-                                    <div class="bg-light rounded p-2">
-                                        <div class="small text-muted">Měsíčně</div>
-                                        <div class="fw-bold text-success">@item.MonthlyPrice.ToString("N0") Kč</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        }
+@if (User.IsInRole("Admin"))
+{
+    <div class="text-end mb-4">
+        <a class="btn btn-primary" asp-action="Create">+ Přidat nové řešení</a>
     </div>
+}
 
-    <h4 class="mb-3">📦 Další dostupná řešení</h4>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        @foreach (var item in rest)
-        {
-            <div class="col">
-                <a asp-action="Details"
-                   asp-route-id="@item.Id"
-                   class="text-decoration-none text-dark">
-                    <div class="card h-100 shadow-sm border-0 hover-shadow">
-                        <div class="card-body">
-                            <h5 class="card-title">@item.Name</h5>
-                            <p class="text-muted small">@item.Description</p>
-                            <div class="row text-center">
-                                <div class="col">
-                                    <div class="bg-light rounded p-2">
-                                        <div class="small text-muted">Jednorázově</div>
-                                        <div class="fw-bold text-primary">@item.Price.ToString("N0") Kč</div>
-                                    </div>
-                                </div>
-                                <div class="small text-muted">Nebo</div>
-                                <div class="col">
-                                    <div class="bg-light rounded p-2">
-                                        <div class="small text-muted">Měsíčně</div>
-                                        <div class="fw-bold text-success">@item.MonthlyPrice.ToString("N0") Kč</div>
-                                    </div>
-                                    @if (User.IsInRole("Admin"))
-                                    {
-                                        <div class="d-flex justify-content-between mt-2">
-                                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm">Zobrazit</a>
-                                            <div class="btn-group btn-group-sm">
-                                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-secondary">Upravit</a>
-                                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger">Smazat</a>
-                                            </div>
-                                        </div>
-                                    }
-                                </div>
-                            </div>
-                        </div>
+<h4 class="text-info mb-3">🔝 Nejoblíbenější řešení</h4>
+<div class="dashboard-grid mb-5">
+    @foreach (var item in top3)
+    {
+        var detailUrl = Url.Action("Details", new { id = item.Id });
+        <a class="tile-link" href="@detailUrl">
+            <div class="tile tile-solution">
+                <div class="badge bg-warning text-dark mb-2">TOP</div>
+                <h5 class="tile-title">@item.Name</h5>
+                <p class="tile-description">@item.Description</p>
+                <div class="tile-price-box">
+                    <div>
+                        <div class="small text-muted">Jednorázově</div>
+                        <div class="fw-bold text-primary">@item.Price.ToString("N0") Kč</div>
                     </div>
-                </a>
+                    <div class="small text-muted">nebo</div>
+                    <div>
+                        <div class="small text-muted">Měsíčně</div>
+                        <div class="fw-bold text-success">@item.MonthlyPrice.ToString("N0") Kč</div>
+                    </div>
+                </div>
             </div>
-        }
-    </div>
+        </a>
+    }
 </div>
-<div class="mt-4 text-muted">
+
+<h4 class="text-info mb-3">📦 Další dostupná řešení</h4>
+<div class="dashboard-grid">
+    @foreach (var item in rest)
+    {
+        var detailUrl = Url.Action("Details", new { id = item.Id });
+        var editUrl = Url.Action("Edit", new { id = item.Id });
+        var deleteUrl = Url.Action("Delete", new { id = item.Id });
+
+        <div class="tile tile-solution">
+            <a class="tile-link" href="@detailUrl">
+                <h5 class="tile-title">@item.Name</h5>
+                <p class="tile-description">@item.Description</p>
+                <div class="tile-price-box">
+                    <div>
+                        <div class="small text-muted">Jednorázově</div>
+                        <div class="fw-bold text-primary">@item.Price.ToString("N0") Kč</div>
+                    </div>
+                    <div class="small text-muted">nebo</div>
+                    <div>
+                        <div class="small text-muted">Měsíčně</div>
+                        <div class="fw-bold text-success">@item.MonthlyPrice.ToString("N0") Kč</div>
+                    </div>
+                </div>
+            </a>
+
+            @if (User.IsInRole("Admin"))
+            {
+                <div class="d-flex justify-content-between mt-3">
+                    <a class="btn btn-outline-primary btn-sm" href="@detailUrl">Zobrazit</a>
+                    <div class="btn-group btn-group-sm">
+                        <a class="btn btn-outline-secondary" href="@editUrl">Upravit</a>
+                        <a class="btn btn-outline-danger" href="@deleteUrl">Smazat</a>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+<div class="mt-5 text-muted">
     <small>
-        Řešení se mohou různě kombinovat aby vyhovovala potřebám Vašeho projektu. Ceny jsou orientační a zavisí na konkrétních potřebách.
+        Řešení se mohou různě kombinovat, aby vyhovovala potřebám Vašeho projektu. Ceny jsou orientační a závisí na konkrétních potřebách.
     </small>
 </div>

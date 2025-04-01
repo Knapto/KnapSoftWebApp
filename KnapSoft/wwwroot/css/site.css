@@ -1,230 +1,331 @@
-html {
-  font-size: 14px;
+﻿/* === Globální nastavení === */
+body.dashboard-ui {
+    margin: 0;
+    color: #f0f0f0;
+    font-family: 'Segoe UI', sans-serif;
+    overflow-x: hidden;
+    background: linear-gradient(to bottom, #0f0f0f, #1a1a1a);
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+/* === Hlavní obsah === */
+.main-dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+/* === Titulek dashboardu === */
+.dashboard-title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #ffffff;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(255,255,255,0.1);
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+/* === Mřížka dlaždic === */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    padding: 1rem;
 }
 
-body {
-  margin-bottom: 60px;
+a.tile-link {
+    text-decoration: none;
 }
 
-.badge-hover {
-    background-color: #6c757d; /* Bootstrap secondary */
-    color: white;
-    transition: background-color 0.2s ease-in-out;
-}
-
-.badge-hover:hover {
-    background-color: #198754 !important; /* Bootstrap success */
-    color: white !important;
-}
-
-.highlight-card {
-    border: 2px solid #ffc107;
+/* === Dlaždice === */
+.tile {
+    background: #1e1e1e;
+    border-radius: 12px;
+    padding: 2rem;
+    color: #f0f0f0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
+    overflow: hidden;
 }
 
-.highlight-badge {
+.tile-link:hover .tile {
+    transform: scale(1.03);
+    background: #292929;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.7);
+}
+
+.tile::before {
+    content: '';
     position: absolute;
-    top: -10px;
-    right: -10px;
-    background-color: #ffc107;
-    color: #212529;
-    font-weight: bold;
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-.highlight-card {
-    border: 2px solid #ffc107;
-    position: relative;
+    inset: 0;
+    background: linear-gradient(145deg, rgba(255,255,255,0.02), transparent);
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: -1;
 }
 
-.highlight-badge {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    background-color: #ffc107;
-    color: #212529;
-    font-weight: bold;
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    animation: pulse 2s infinite;
+/* === Speciální dlaždice === */
+.tile-solution {
+    min-height: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.1);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
-.rich-content {
-    font-size: 1rem;
-    line-height: 1.8;
-    color: #333;
-}
-
-    .rich-content h1,
-    .rich-content h2,
-    .rich-content h3 {
-        margin-top: 1.2em;
-        margin-bottom: 0.5em;
-        font-weight: 600;
-    }
-
-    .rich-content p {
-        margin-bottom: 1rem;
-    }
-
-    .rich-content ul {
-        padding-left: 1.2rem;
-        list-style: disc;
-    }
-
-    .rich-content img {
-        max-width: 100%;
-        height: auto;
-        margin: 1rem 0;
-        border-radius: 8px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-.bootstrap-content {
-    font-size: 1rem;
-    line-height: 1.8;
-    color: #212529;
-}
-
-    .bootstrap-content h1,
-    .bootstrap-content h2,
-    .bootstrap-content h3 {
-        margin-top: 1.5rem;
-        margin-bottom: 1rem;
-        font-weight: 600;
-    }
-
-    .bootstrap-content p {
-        margin-bottom: 1rem;
-    }
-
-    .bootstrap-content ul,
-    .bootstrap-content ol {
-        margin-bottom: 1rem;
-        padding-left: 1.5rem;
-    }
-
-    .bootstrap-content img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 0.5rem;
-        margin: 1rem 0;
-        box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
-.bootstrap-content {
-    font-size: 1rem;
-    line-height: 1.8;
-    color: #212529;
-}
-
-    .bootstrap-content h1, h2, h3 {
-        margin-top: 2rem;
-        margin-bottom: 1rem;
-    }
-
-    .bootstrap-content p {
-        margin-bottom: 1rem;
-    }
-
-    .bootstrap-content ul, ol {
-        margin-bottom: 1rem;
-        padding-left: 1.5rem;
-    }
-
-    .bootstrap-content img {
-        max-width: 100%;
-        border-radius: 0.5rem;
-        margin: 1rem 0;
-        box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
-.blog-article h1, .blog-article h2 {
-    color: #212529;
-}
-
-.blog-article p {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: #495057;
-    margin-bottom: 1rem;
-}
-
-.blog-article ul {
-    margin-top: 0.5rem;
-    margin-bottom: 1rem;
-}
-
-.blog-article li {
+.tile-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #fff;
     margin-bottom: 0.5rem;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
 }
 
-body {
-    font-family: 'Poppins', sans-serif;
+.tile-description {
+    flex-grow: 1;
+    font-size: 0.95rem;
+    color: #aaa;
+    margin-bottom: 1rem;
+    line-height: 1.4;
 }
 
-.logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #1F2937;
+.tile-price-box {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+    font-size: 0.95rem;
 }
 
-    .logo span {
-        color: #3B82F6;
-        font-weight: 400;
+.tile-price-box .text-muted {
+    color: #888 !important;
+}
+
+/* === Tile-info varianta === */
+.tile-info {
+    padding: 1.5rem;
+    background: #1e1e1e;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    text-align: left;
+    transition: transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 0.5rem;
+    min-height: 220px;
+}
+
+.tile-info .tile-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.4rem;
+}
+
+.tile-info .tile-description {
+    font-size: 0.95rem;
+    color: #aaa;
+    line-height: 1.5;
+}
+
+/* === Styl pro blogový článek === */
+.blog-inner {
+    max-width: 900px;
+    padding: 1.5rem;
+    width: 100%;
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    color: #f0f0f0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.blog-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.blog-date {
+    color: #aaa;
+}
+
+.blog-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+}
+
+.blog-content {
+    line-height: 1.85;
+    font-size: 1.1rem;
+    color: #ccc;
+}
+
+.blog-content h2,
+.blog-content h3 {
+    margin-top: 2rem;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.blog-content a {
+    color: #66b2ff;
+    text-decoration: underline;
+}
+
+.blog-content blockquote {
+    border-left: 4px solid #666;
+    padding-left: 1rem;
+    color: #aaa;
+    font-style: italic;
+    margin: 1.5rem 0;
+}
+
+.blog-content ul,
+.blog-content ol {
+    padding-left: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 992px) {
+    .dashboard-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1.5rem;
     }
 
-.fade-up {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeUp 1s ease-out forwards;
+    .tile {
+        padding: 1.5rem;
+        font-size: 1.1rem;
+    }
 }
 
-@keyframes fadeUp {
+@media (max-width: 576px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        padding: 0.5rem;
+        gap: 1rem;
+    }
+
+    .tile {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+
+    .dashboard-title {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    .logo-final-position {
+        font-size: 1.4rem;
+        top: 20px;
+    }
+
+    .blog-title {
+        font-size: 1.4rem;
+    }
+
+    .blog-content {
+        font-size: 1rem;
+        line-height: 1.65;
+    }
+
+    .blog-inner {
+        padding: 1rem;
+    }
+}
+
+/* === Loader a logo === */
+.knap-loader {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    flex-direction: column;
+}
+
+#animated-logo {
+    font-size: 3rem;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.knap {
+    color: #ffffff !important;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.soft {
+    color: #FFD700 !important;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.fade-out {
+    animation: fadeOutBg 1s forwards;
+}
+
+@keyframes fadeOutBg {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+.fade-in {
+    animation: fadeInContent 1.2s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInContent {
     to {
         opacity: 1;
-        transform: translateY(0);
     }
 }
 
-.fade-delay-1 {
-    animation-delay: 0.2s;
+.logo-final-position {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 2px;
+    z-index: 10;
 }
 
-.fade-delay-2 {
-    animation-delay: 0.4s;
+/* Animace přesunu loga – použije se pouze jednou */
+.logo-move-animation {
+    animation: logoMoveUp 1s ease-out forwards;
 }
 
-.fade-delay-3 {
-    animation-delay: 0.6s;
+@keyframes logoMoveUp {
+    from {
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    to {
+        top: 40px;
+        transform: translateX(-50%);
+    }
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');

@@ -1,16 +1,16 @@
 ﻿@model KnapSoft.Models.BlogPost
 
-<div class="container py-5">
-    <article class="mx-auto" style="max-width: 850px;">
-        <h1 class="mb-2">@Model.Title</h1>
-        <p class="text-muted">Publikováno: @Model.CreatedAt.ToString("d. MMMM yyyy")</p>
+<article class="blog-article container-fluid py-5">
+    <div class="blog-inner mx-auto">
+        <h1 class="blog-title mb-3">@Model.Title</h1>
+        <p class="blog-date text-light opacity-75 small">Publikováno: @Model.CreatedAt.ToString("d. MMMM yyyy")</p>
 
         @if (!string.IsNullOrEmpty(Model.CoverImageUrl))
         {
-            <img src="@Model.CoverImageUrl" class="img-fluid rounded shadow-sm mb-4" alt="@Model.Title" />
+            <img src="@Model.CoverImageUrl" class="blog-image img-fluid rounded shadow-sm mb-4" alt="@Model.Title" />
         }
 
-        <div class="bootstrap-content">
+        <div class="blog-content">
             @Html.Raw(Model.Content)
         </div>
 
@@ -21,5 +21,5 @@
                 <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-outline-danger btn-sm">Smazat</a>
             </div>
         }
-    </article>
-</div>
+    </div>
+</article>

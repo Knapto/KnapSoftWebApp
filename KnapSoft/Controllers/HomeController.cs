@@ -42,6 +42,10 @@ public class HomeController : Controller
     {
         return View();
     }
+    public IActionResult Proc()
+    {
+        return View();
+    }
 
 
     [HttpPost]

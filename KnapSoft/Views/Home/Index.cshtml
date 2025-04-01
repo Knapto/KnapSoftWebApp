@@ -1,56 +1,42 @@
-﻿@{
-    ViewData["Title"] = "Úvod";
+﻿<!-- INDEX.CSHTML -->
+@{
+    ViewData["Title"] = "Control Panel";
 }
 
-<section class="text-center py-5 fade-up fade-delay-1">
-    <div class="container">
-        <h1 class="display-5 fw-bold">Webové aplikace, které přinášejí výsledky</h1>
-        <p class="lead mt-3 mb-4 text-muted">
-            Pomáháme firmám šetřit čas, získat přehled a růst díky chytrým digitálním řešením.
-        </p>
-        <a href="/Solutions" class="btn btn-primary btn-lg">Zjistit více</a>
-    </div>
-</section>
+<!-- ANIMATED LOGO LOADER -->
+<div id="loader" class="knap-loader">
+    <h1 id="animated-logo">
+        <span class="knap"></span><span class="soft"></span>
+    </h1>
+</div>
+<!--Fixni logo-->
+<div id="animated-logo-container" class="logo-final-position d-none">
+    <h1 id="animated-logo-fixed">
+        <span class="knap">Knap</span><span class="soft">Software</span>
+    </h1>
+</div>
 
-<section class="py-5 bg-light">
-    <div class="container">
-        <div class="row text-center">
-            <div class="col-md-4 mb-4 fade-up fade-delay-1">
-                <h3>🔧 Na míru</h3>
-                <p>Navrhujeme řešení podle potřeb vaší firmy – žádné šablony, jen funkční nástroje.</p>
-            </div>
-            <div class="col-md-4 mb-4 fade-up fade-delay-2">
-                <h3>⏱️ Úspora času</h3>
-                <p>Automatizujeme rutinu, abyste se mohli věnovat tomu podstatnému.</p>
-            </div>
-            <div class="col-md-4 mb-4 fade-up fade-delay-3">
-                <h3>📈 Růst</h3>
-                <p>Naše systémy vám pomohou růst – ať už jste malá firma nebo rozjíždíte nový projekt.</p>
-            </div>
-        </div>
+<!-- CONTENT THAT LOADS AFTER -->
+<div id="dashboard-content" class="d-none">
+    <h1 class="dashboard-title">Vítejte v systému</h1>
+    <div class="dashboard-grid">
+        <a class="tile-link" href="@Url.Action("Index", "Home")">
+            <div class="tile"><div class="tile-inner">🏠 Hlavní stránka</div></div>
+        </a>
+        <a class="tile-link" href="@Url.Action("Index", "BlogPosts")">
+            <div class="tile"><div class="tile-inner">📝 Blog</div></div>
+        </a>
+        <a class="tile-link" href="@Url.Action("Proc", "Home")">
+            <div class="tile"><div class="tile-inner">❓ Proč?</div></div>
+        </a>
+        <a class="tile-link" href="@Url.Action("Jak", "Home")">
+            <div class="tile"><div class="tile-inner">⚙️ Jak?</div></div>
+        </a>
+        <a class="tile-link" href="@Url.Action("Kontakt", "Home")">
+            <div class="tile"><div class="tile-inner">📞 Kontakt</div></div>
+        </a>
+        <a class="tile-link" href="@Url.Action("Index", "Solutions")">
+            <div class="tile"><div class="tile-inner">🧙‍♂️ Řešení</div></div>
+        </a>
     </div>
-</section>
-
-<section class="py-5 fade-up fade-delay-2">
-    <div class="container">
-        <h2 class="text-center mb-4">Co vám můžeme nabídnout</h2>
-        <div class="row">
-            <div class="col-md-6">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Webové aplikace na míru</li>
-                    <li class="list-group-item">Systémy pro firmy a provoz</li>
-                    <li class="list-group-item">Interní nástroje a evidence</li>
-                    <li class="list-group-item">Rezervační a rozvozové systémy</li>
-                </ul>
-            </div>
-            <div class="col-md-6">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">E-shopy a online objednávky</li>
-                    <li class="list-group-item">Jednoduchá správa obsahu</li>
-                    <li class="list-group-item">Responsivní a moderní design</li>
-                    <li class="list-group-item">Možnost rozšíření dle růstu</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
+</div>
