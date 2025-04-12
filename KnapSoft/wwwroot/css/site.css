@@ -139,13 +139,13 @@ a.tile-link {
 
 /* === Styl pro blogový článek === */
 .blog-inner {
-    max-width: 900px;
-    padding: 1.5rem;
     width: 100%;
-    background-color: #1e1e1e;
-    border-radius: 12px;
-    color: #f0f0f0;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    max-width: none;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    color: inherit;
 }
 
 .blog-title {
@@ -241,9 +241,9 @@ a.tile-link {
         line-height: 1.65;
     }
 
-    .blog-inner {
+    /*.blog-inner {
         padding: 1rem;
-    }
+    }*/
 }
 
 /* === Loader a logo === */
@@ -258,11 +258,37 @@ a.tile-link {
     flex-direction: column;
 }
 
-#animated-logo {
-    font-size: 3rem;
+/* === Responzivní logo === */
+#animated-logo,
+#animated-logo-fixed {
     font-family: 'Poppins', sans-serif;
-    letter-spacing: 2px;
+    font-weight: 600;
     text-align: center;
+    word-break: break-word;
+    line-height: 1.2;
+    padding: 0.5rem 1rem;
+    font-size: clamp(1.5rem, 5vw, 3rem); /* Flexibilní velikost loga */
+    max-width: 90vw;
+}
+
+.logo-final-position {
+    position: absolute;
+    top: clamp(20px, 5vh, 40px);
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    letter-spacing: 2px;
+    z-index: 10;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* Loader logo – adaptivní */
+.knap-loader h1#animated-logo {
+    font-size: clamp(1.8rem, 6vw, 3.5rem);
+    max-width: 90vw;
 }
 
 .knap {
@@ -300,17 +326,6 @@ a.tile-link {
     }
 }
 
-.logo-final-position {
-    position: absolute;
-    top: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 2rem;
-    font-family: 'Poppins', sans-serif;
-    letter-spacing: 2px;
-    z-index: 10;
-}
-
 /* Animace přesunu loga – použije se pouze jednou */
 .logo-move-animation {
     animation: logoMoveUp 1s ease-out forwards;
@@ -323,8 +338,146 @@ a.tile-link {
     }
 
     to {
-        top: 40px;
+        top: clamp(20px, 5vh, 40px);
         transform: translateX(-50%);
+    }
+}
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .tile-nav {
+        order: -1; /* Zobrazí menu jako první (nad obsahem) */
+        padding: 1rem;
+        text-align: center;
+    }
+
+        .tile-nav .nav-link {
+            display: inline-block;
+            margin: 0.25rem;
+            padding: 0.5rem 1rem;
+            background: #292929;
+            border-radius: 6px;
+        }
+
+            .tile-nav .nav-link.active {
+                background: #007bff;
+                color: #fff !important;
+            }
+}
+
+/*Acc nav*/
+.manage-nav-tile .nav-link {
+    padding: 0.75rem 1.5rem;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    color: #ddd;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.2s ease;
+    font-weight: 600;
+    text-align: center;
+}
+
+    .manage-nav-tile .nav-link:hover {
+        background-color: #292929;
+        color: #fff;
+    }
+
+    .manage-nav-tile .nav-link.active {
+        background-color: #007bff;
+        color: #fff !important;
+    }
+
+@media (max-width: 768px) {
+    .manage-nav-tile {
+        flex-direction: row !important;
+        flex-wrap: wrap;
+    }
+
+        .manage-nav-tile .nav-item {
+            flex: 1 1 calc(50% - 1rem);
+            text-align: center;
+        }
+}
+
+@media (max-width: 480px) {
+    .manage-nav-tile .nav-item {
+        flex: 1 1 100%;
+    }
+}
+.solution-description {
+    padding: 1rem 2rem;
+    max-width: 100%;
+    background: none;
+    border-radius: 0;
+}
+
+@media (max-width: 576px) {
+    .solution-description {
+        padding: 1rem 1rem;
+    }
+
+        .solution-description h2 {
+            font-size: 1.4rem;
+        }
+
+        .solution-description .blog-content {
+            font-size: 1rem;
+            line-height: 1.65;
+        }
+}
+/* Grid, který se nezalamuje na mobilech */
+.dashboard-grid.grid-small {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    width: 100%;
+}
+
+@media (max-width: 576px) {
+    .dashboard-grid.grid-small .tile-info {
+        font-size: 0.85rem;
+        padding: 1rem;
+    }
+
+    .dashboard-grid.grid-small {
+        grid-template-columns: repeat(3, 1fr); /* zachová 3 sloupce i na mobilu */
+        gap: 0.5rem;
+    }
+
+        .dashboard-grid.grid-small h6 {
+            font-size: 0.7rem;
+        }
+
+        .dashboard-grid.grid-small .fs-4 {
+            font-size: 1rem;
+        }
+}
+.dashboard-grid.grid-fixed-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+@media (max-width: 576px) {
+    .dashboard-grid.grid-fixed-3 {
+        grid-template-columns: repeat(3, 1fr); /* zachová tři sloupce i na mobilu */
+        gap: 0.5rem;
+    }
+
+    .dashboard-grid.grid-fixed-3 .tile-info {
+        padding: 0.8rem;
+        font-size: 0.85rem;
+    }
+
+    .dashboard-grid.grid-fixed-3 h6 {
+        font-size: 0.7rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .dashboard-grid.grid-fixed-3 .fs-4 {
+        font-size: 1rem;
     }
 }
 

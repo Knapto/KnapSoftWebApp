@@ -1,0 +1,74 @@
+﻿@page
+@model RegisterModel
+
+@{
+    ViewData["Title"] = "Registrace";
+}
+
+
+
+<!-- REGISTER PAGE STYLED -->
+<div id="dashboard-content">
+    <h1 class="dashboard-title">🆕 Registrace nového uživatele</h1>
+    <div class="row justify-content-center px-3">
+        <div class="col-lg-8 mb-4">
+            <div class="tile tile-info">
+                <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
+
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.Email" class="form-control bg-dark text-white border-secondary" placeholder="name@example.com" autocomplete="username" aria-required="true" />
+                        <label asp-for="Input.Email" class="text-light">Email</label>
+                        <span asp-validation-for="Input.Email" class="text-danger small"></span>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.Password" class="form-control bg-dark text-white border-secondary" placeholder="••••••" autocomplete="new-password" aria-required="true" />
+                        <label asp-for="Input.Password" class="text-light">Heslo</label>
+                        <span asp-validation-for="Input.Password" class="text-danger small"></span>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.ConfirmPassword" class="form-control bg-dark text-white border-secondary" placeholder="••••••" autocomplete="new-password" aria-required="true" />
+                        <label asp-for="Input.ConfirmPassword" class="text-light">Potvrzení hesla</label>
+                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger small"></span>
+                    </div>
+
+                    <button id="registerSubmit" type="submit" class="btn btn-success w-100 mb-3">Zaregistrovat se</button>
+                </form>
+            </div>
+        </div>
+        <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-outline-light w-100 mb-2">
+            Přihlásit se
+        </a>
+
+        @* <div class="col-lg-5 mb-4">
+            <div class="tile tile-info">
+                <h3 class="text-white mb-3 text-center">🌐 Registrovat se pomocí</h3>
+                <hr class="bg-secondary" />
+                @if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+                    <p class="text-light small">
+                        Žádné externí přihlašovací služby nejsou nastaveny.
+                        <a href="https://go.microsoft.com/fwlink/?LinkID=532715" class="text-info">Zobrazit článek o nastavení přihlášení přes externí služby.</a>
+                    </p>
+                }
+                else
+                {
+                    <form asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                        @foreach (var provider in Model.ExternalLogins!)
+                        {
+                            <button type="submit" class="btn btn-outline-light w-100 mb-2" name="provider" value="@provider.Name">
+                                Registrovat přes @provider.DisplayName
+                            </button>
+                        }
+                    </form>
+                }
+            </div>
+        </div> *@
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -11,7 +11,7 @@
 @if (User.IsInRole("Admin"))
 {
     <div class="text-end mb-4">
-        <a class="btn btn-primary" asp-action="Create">+ Přidat nové řešení</a>
+        <a class="btn btn-outline-light" asp-action="Create">➕ Přidat nové řešení</a>
     </div>
 }
 
@@ -22,7 +22,7 @@
         var detailUrl = Url.Action("Details", new { id = item.Id });
         <a class="tile-link" href="@detailUrl">
             <div class="tile tile-solution">
-                <div class="badge bg-warning text-dark mb-2">TOP</div>
+                <div class="badge bg-warning text-dark mb-2 shadow-sm">TOP řešení</div>
                 <h5 class="tile-title">@item.Name</h5>
                 <p class="tile-description">@item.Description</p>
                 <div class="tile-price-box">
@@ -49,11 +49,12 @@
         var editUrl = Url.Action("Edit", new { id = item.Id });
         var deleteUrl = Url.Action("Delete", new { id = item.Id });
 
-        <div class="tile tile-solution">
-            <a class="tile-link" href="@detailUrl">
+        <a class="tile-link" href="@detailUrl">
+            <div class="tile tile-solution d-flex flex-column justify-content-between h-100">
                 <h5 class="tile-title">@item.Name</h5>
                 <p class="tile-description">@item.Description</p>
-                <div class="tile-price-box">
+
+                <div class="tile-price-box mt-auto">
                     <div>
                         <div class="small text-muted">Jednorázově</div>
                         <div class="fw-bold text-primary">@item.Price.ToString("N0") Kč</div>
@@ -64,24 +65,24 @@
                         <div class="fw-bold text-success">@item.MonthlyPrice.ToString("N0") Kč</div>
                     </div>
                 </div>
-            </a>
+            </div>
+        </a>
 
-            @if (User.IsInRole("Admin"))
-            {
-                <div class="d-flex justify-content-between mt-3">
-                    <a class="btn btn-outline-primary btn-sm" href="@detailUrl">Zobrazit</a>
-                    <div class="btn-group btn-group-sm">
-                        <a class="btn btn-outline-secondary" href="@editUrl">Upravit</a>
-                        <a class="btn btn-outline-danger" href="@deleteUrl">Smazat</a>
-                    </div>
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="d-flex justify-content-between mt-3">
+                <a class="btn btn-outline-light btn-sm" href="@detailUrl">🔍 Zobrazit</a>
+                <div class="btn-group btn-group-sm">
+                    <a class="btn btn-outline-secondary" href="@editUrl">✏️ Upravit</a>
+                    <a class="btn btn-outline-danger" href="@deleteUrl">🗑️ Smazat</a>
                 </div>
-            }
-        </div>
+            </div>
+        }
     }
 </div>
 
-<div class="mt-5 text-muted">
-    <small>
-        Řešení se mohou různě kombinovat, aby vyhovovala potřebám Vašeho projektu. Ceny jsou orientační a závisí na konkrétních potřebách.
-    </small>
+<div class="mt-5 text-white-50 text-center small">
+    <em>
+        💡 Řešení je možné kombinovat podle potřeb vašeho projektu. Uvedené ceny jsou orientační a přizpůsobíme je konkrétním požadavkům.
+    </em>
 </div>

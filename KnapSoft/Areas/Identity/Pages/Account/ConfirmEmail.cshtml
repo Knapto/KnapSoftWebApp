@@ -1,0 +1,22 @@
+﻿@page
+@model ConfirmEmailModel
+@{
+    ViewData["Title"] = "Potvrzení e-mailu";
+}
+
+
+<!-- CONTENT STYLED -->
+<div id="dashboard-content">
+    <h1 class="dashboard-title">📧 Potvrzení e-mailové adresy</h1>
+    <div class="row justify-content-center px-3">
+        <div class="col-lg-6">
+            <div class="tile tile-info text-center">
+                <partial name="_StatusMessage" model="Model.StatusMessage" />
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

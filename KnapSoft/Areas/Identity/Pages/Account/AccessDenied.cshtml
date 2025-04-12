@@ -1,0 +1,21 @@
+﻿@page
+@model AccessDeniedModel
+@{
+    ViewData["Title"] = "Přístup odepřen";
+}
+
+<!-- CONTENT STYLED -->
+<div id="dashboard-content">
+    <h1 class="dashboard-title text-danger">🚫 Přístup odepřen</h1>
+    <div class="row justify-content-center px-3">
+        <div class="col-lg-6">
+            <div class="tile tile-info text-center">
+                <p class="text-danger">Nemáte oprávnění pro přístup k této části systému.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

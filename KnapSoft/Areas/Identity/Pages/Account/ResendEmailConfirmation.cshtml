@@ -1,0 +1,35 @@
+﻿@page
+@model ResendEmailConfirmationModel
+@{
+    ViewData["Title"] = "Znovu odeslat potvrzení e-mailu";
+}
+
+<div id="dashboard-content">
+    <h1 class="dashboard-title">📧 Znovu odeslat potvrzení e-mailu</h1>
+
+    <div class="row justify-content-center px-3">
+        <div class="col-lg-8 col-xl-6">
+            <div class="tile tile-info">
+                <form method="post">
+                    <div asp-validation-summary="All" class="text-danger mb-3" role="alert"></div>
+
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.Email" class="form-control bg-dark text-white border-secondary" aria-required="true" placeholder="name@example.com" />
+                        <label asp-for="Input.Email" class="text-dark small">Email</label>
+                        <span asp-validation-for="Input.Email" class="text-danger small"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Odeslat znovu</button>
+                </form>
+
+                <div class="text-center small mt-3">
+                    <a class="text-info" asp-page="./Login">⬅️ Zpět na přihlášení</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using KnapSoft.Data;
@@ -18,6 +18,14 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddTransient<EmailService>();
+
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.SignIn.RequireConfirmedAccount = true;
+});
+
+builder.Services.AddTransient<IEmailSender, EmailSender>();
+
 
 //builder.WebHost.UseUrls("http://0.0.0.0:5000");
 

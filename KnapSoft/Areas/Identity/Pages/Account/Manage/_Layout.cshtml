@@ -1,0 +1,33 @@
+﻿@{
+    if (ViewData.TryGetValue("ParentLayout", out var parentLayout) && parentLayout != null)
+    {
+        Layout = parentLayout.ToString();
+    }
+    else
+    {
+        Layout = "/Areas/Identity/Pages/_Layout.cshtml";
+    }
+}
+
+<!-- OBSAH PO NAČTENÍ -->
+<div id="dashboard-content" class="main-dashboard">
+    <h1 class="dashboard-title">⚙️ Správa účtu</h1>
+
+    <div class="row g-4 w-100 px-2 px-sm-3 px-md-4">
+        <!-- Navigace vlevo -->
+        <div class="col-md-4 col-lg-3">
+            <div class="tile tile-info h-100 p-3">
+                <partial name="_ManageNav" />
+            </div>
+        </div>
+
+        <!-- Obsah stránky -->
+        <div class="col-md-8 col-lg-9">
+            <div>
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</div>
+
+@RenderSection("Scripts", required: false)

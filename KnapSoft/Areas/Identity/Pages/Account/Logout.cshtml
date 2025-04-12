@@ -1,0 +1,41 @@
+﻿@page
+@model LogoutModel
+@{
+    ViewData["Title"] = "Odhlášení";
+}
+
+<!-- ANIMATED LOGO LOADER -->
+<div id="loader" class="knap-loader">
+    <h1 id="animated-logo">
+        <span class="knap"></span><span class="soft"></span>
+    </h1>
+</div>
+
+<!--Fixní logo po načtení-->
+<div id="animated-logo-container" class="logo-final-position d-none">
+    <h1 id="animated-logo-fixed">
+        <span class="knap">Knap</span><span class="soft">Software</span>
+    </h1>
+</div>
+
+<!-- OBSAH PO NAČTENÍ -->
+<div id="dashboard-content" class="d-none">
+    <h1 class="dashboard-title">🚪 Odhlášení</h1>
+
+    <div class="dashboard-grid justify-content-center">
+        <div class="tile tile-info text-white text-center" style="max-width: 500px; margin: 0 auto;">
+            @if (User.Identity?.IsAuthenticated ?? false)
+            {
+                <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                    <p class="mb-3">Opravdu se chcete odhlásit?</p>
+                    <button type="submit" class="btn btn-danger px-4">Odhlásit se</button>
+                </form>
+            }
+            else
+            {
+                <p class="text-success">Byli jste úspěšně odhlášeni z aplikace.</p>
+                <a href="/" class="btn btn-outline-light mt-3">🏠 Zpět na hlavní stránku</a>
+            }
+        </div>
+    </div>
+</div>

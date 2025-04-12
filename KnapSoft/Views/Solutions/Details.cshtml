@@ -6,51 +6,65 @@
 
 <h1 class="dashboard-title">@Model.Name</h1>
 
-<div class="dashboard-grid mb-4">
-    <div class="tile tile-info">
-        <h6 class="text-uppercase text-muted small">Jednorázová cena</h6>
+<section class="dashboard-grid grid-fixed-3 mb-5">
+    <div class="tile tile-info text-center">
+        <h6 class="text-uppercase text-white small">💰 Jednorázová cena</h6>
+        <br />
         <div class="fs-4 fw-bold text-primary">@Model.Price.ToString("N0") Kč</div>
     </div>
-    <div class="tile tile-info d-flex align-items-center justify-content-center text-muted text-uppercase">
+    <div class="tile tile-info d-flex align-items-center justify-content-center text-white text-uppercase fw-bold">
         NEBO
     </div>
-    <div class="tile tile-info">
-        <h6 class="text-uppercase text-muted small">Měsíční plán</h6>
+    <div class="tile tile-info text-center">
+        <h6 class="text-uppercase text-white small">📆 Měsíční plán</h6>
+        <br />
         <div class="fs-4 fw-bold text-success">@Model.MonthlyPrice.ToString("N0") Kč</div>
     </div>
-</div>
+</section>
 
-<div class="tile tile-info mb-4">
-    <h5 class="tile-title">Podrobnosti</h5>
-    <div class="blog-content">
-        @Html.Raw(Model.LargeDescription)
+<section >
+    <div class="bg-white text-dark rounded shadow-sm px-3 px-md-5 py-4">
+        <h2 class="mb-4 fw-semibold">📝 Detailní popis řešení</h2>
+        <div class="">
+            @Html.Raw(Model.LargeDescription)
+        </div>
     </div>
+</section>
+
+<section class="mb-4">
+    <h5 class="mb-3">🔧 Co je součástí řešení:</h5>
+    <div class="d-flex flex-wrap gap-2">
+        @foreach (var sp in Model.SolutionProducts)
+        {
+            <a asp-controller="Products"
+               asp-action="Details"
+               asp-route-id="@sp.Product.Id"
+               class="badge badge-hover bg-dark border border-light text-light px-3 py-2 rounded-pill small text-decoration-none">
+                @sp.Product.Name
+            </a>
+        }
+    </div>
+</section>
+
+<section class="py-5 fade-up fade-delay-3 text-center">
+    <div class="container">
+        <h2 class="text-white text-shadow mb-3 text-white-50">Přemýšlíte nad vlastním řešením?</h2>
+        <p class="text-muted mb-4 text-white-50">Ozvěte se a probereme možnosti. Navrhneme ideální aplikaci právě pro vás.</p>
+        <a href="@Url.Action("Kontakt", "Home")" class="btn btn-outline-light btn-lg">📩 Chci to probrat</a>
+    </div>
+</section>
+
+<div class="text-white-50 small mb-5">
+    <em>
+        🛈 Ceny jsou orientační a upravíme je podle konkrétních požadavků. V rámci ceny může být zahrnuta i technická podpora nebo zaškolení.
+    </em>
 </div>
 
-<h5 class="mb-3">Co je součástí řešení:</h5>
-<div class="d-flex flex-wrap gap-2 mb-4">
-    @foreach (var sp in Model.SolutionProducts)
-    {
-        <a asp-controller="Products"
-           asp-action="Details"
-           asp-route-id="@sp.Product.Id"
-           class="badge badge-hover px-3 py-2 rounded-pill small text-decoration-none">
-            @sp.Product.Name
-        </a>
-    }
-</div>
-
-<div class="text-muted mb-4">
-    <small>
-        Ceny jsou orientační a záleží na konkrétních potřebách Vašeho projektu. V ceně může být i základní technická podpora.
-    </small>
-</div>
-
-<div class="d-flex justify-content-between">
-    <a asp-action="Index" class="btn btn-outline-secondary btn-sm">← Zpět na seznam řešení</a>
+<div class="d-flex justify-content-between align-items-center">
+    <a asp-action="Index" class="btn btn-outline-secondary btn-sm">← Zpět na přehled řešení</a>
 
     @if (User.IsInRole("Admin"))
     {
-        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary btn-sm">Upravit řešení</a>
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-light btn-sm">✏️ Upravit řešení</a>
     }
 </div>

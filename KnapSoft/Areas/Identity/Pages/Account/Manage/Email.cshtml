@@ -1,0 +1,52 @@
+﻿@page
+@model EmailModel
+@{
+    ViewData["Title"] = "Změna emailu";
+    ViewData["ActivePage"] = ManageNavPages.Email;
+}
+
+<!-- OBSAH PO NAČTENÍ -->
+<div id="dashboard-content">
+    <h1 class="dashboard-title">📧 Změna emailu</h1>
+
+    <div class="dashboard-grid justify-content-center">
+        <div style="max-width: 600px; width: 100%; padding: 1rem; margin: 0 auto;">
+            <partial name="_StatusMessage" for="StatusMessage" />
+
+            <form id="email-form" method="post">
+                <div asp-validation-summary="All" class="text-danger mb-3 text-center" role="alert"></div>
+
+                @if (Model.IsEmailConfirmed)
+                {
+                    <div class="form-floating mb-3 input-group">
+                        <input asp-for="Email" class="form-control" disabled />
+                        <label asp-for="Email" class="form-label"></label>
+                        <span class="input-group-text text-success fw-bold">✓</span>
+                    </div>
+                }
+                else
+                {
+                    <div class="form-floating mb-3">
+                        <input asp-for="Email" class="form-control" disabled />
+                        <label asp-for="Email" class="form-label"></label>
+                        <button id="email-verification" type="submit" asp-page-handler="SendVerificationEmail" class="btn btn-link px-0">
+                            📩 Odeslat potvrzovací e-mail
+                        </button>
+                    </div>
+                }
+
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.NewEmail" class="form-control" autocomplete="email" placeholder="Zadejte nový email" />
+                    <label asp-for="Input.NewEmail" class="form-label"></label>
+                    <span asp-validation-for="Input.NewEmail" class="text-danger"></span>
+                </div>
+
+                <button id="change-email-button" type="submit" asp-page-handler="ChangeEmail" class="w-100 btn btn-primary">💾 Změnit email</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

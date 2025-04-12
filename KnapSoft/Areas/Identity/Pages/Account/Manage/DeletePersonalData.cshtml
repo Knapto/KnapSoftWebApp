@@ -1,0 +1,39 @@
+﻿@page
+@model DeletePersonalDataModel
+@{
+    ViewData["Title"] = "Smazání účtu";
+    ViewData["ActivePage"] = ManageNavPages.PersonalData;
+}
+
+<div id="dashboard-content">
+    <h1 class="dashboard-title text-danger">⚠️ Smazání účtu</h1>
+
+    <div class="dashboard-grid justify-content-center">
+        <div class="tile tile-danger text-white" style="max-width: 600px; margin: 0 auto;">
+            <div class="alert alert-warning text-dark" role="alert">
+                <strong>
+                    Tato akce trvale odstraní váš účet a data. Tento krok nelze vrátit zpět.
+                </strong>
+            </div>
+
+            <form id="delete-user" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+                @if (Model.RequirePassword)
+                {
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="Zadejte své heslo." />
+                        <label asp-for="Input.Password" class="form-label"></label>
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                }
+
+                <button class="w-100 btn btn-lg btn-danger" type="submit">🗑️ Smazat účet a všechna data</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

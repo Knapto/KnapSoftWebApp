@@ -46,6 +46,22 @@ public class HomeController : Controller
     {
         return View();
     }
+    public IActionResult ProZivnostniky()
+    {
+        return View();
+    }
+    public IActionResult Restaurace()
+    {
+        return View();
+    }
+    public IActionResult MaleFirmy()
+    {
+        return View();
+    }
+    public IActionResult NaseMise()
+    {
+        return View();
+    }
 
 
     [HttpPost]

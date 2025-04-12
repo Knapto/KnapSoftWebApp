@@ -18,25 +18,50 @@
 
 <!-- CONTENT THAT LOADS AFTER -->
 <div id="dashboard-content" class="d-none">
-    <h1 class="dashboard-title">Vítejte v systému</h1>
+    <h1 class="dashboard-title">
+        Vítejte v systému
+        @if (User?.Identity?.IsAuthenticated ?? false)
+        {
+            <text>, @User.Identity.Name</text>
+        }
+    </h1>
     <div class="dashboard-grid">
-        <a class="tile-link" href="@Url.Action("Index", "Home")">
+        @* <a class="tile-link" href="@Url.Action("Index", "Home")">
             <div class="tile"><div class="tile-inner">🏠 Hlavní stránka</div></div>
-        </a>
+        </a> *@
         <a class="tile-link" href="@Url.Action("Index", "BlogPosts")">
-            <div class="tile"><div class="tile-inner">📝 Blog</div></div>
+            <div class="tile"><div class="tile-inner">Blog</div></div>
         </a>
         <a class="tile-link" href="@Url.Action("Proc", "Home")">
-            <div class="tile"><div class="tile-inner">❓ Proč?</div></div>
+            <div class="tile"><div class="tile-inner">Proč?</div></div>
         </a>
         <a class="tile-link" href="@Url.Action("Jak", "Home")">
-            <div class="tile"><div class="tile-inner">⚙️ Jak?</div></div>
+            <div class="tile"><div class="tile-inner">Jak?</div></div>
         </a>
         <a class="tile-link" href="@Url.Action("Kontakt", "Home")">
-            <div class="tile"><div class="tile-inner">📞 Kontakt</div></div>
+            <div class="tile"><div class="tile-inner">Kontakt</div></div>
         </a>
         <a class="tile-link" href="@Url.Action("Index", "Solutions")">
-            <div class="tile"><div class="tile-inner">🧙‍♂️ Řešení</div></div>
+            <div class="tile"><div class="tile-inner">Řešení</div></div>
         </a>
+        <a class="tile-link" href="@Url.Action("ProZivnostniky", "Home")">
+            <div class="tile"><div class="tile-inner">Pro živnostníky</div></div>
+        </a>
+        <a class="tile-link" href="@Url.Action("Restaurace", "Home")">
+            <div class="tile"><div class="tile-inner">Restaurace / Bistra</div></div>
+        </a>
+        <a class="tile-link" href="@Url.Action("MaleFirmy", "Home")">
+            <div class="tile"><div class="tile-inner">Malé firmy</div></div>
+        </a>
+        <a class="tile-link" href="@Url.Action("NaseMise", "Home")">
+            <div class="tile"><div class="tile-inner">Naše Mise</div></div>
+        </a>
+        @* Zobrazit jen pokud je uživatel přihlášen *@
+        @if (User.Identity?.IsAuthenticated ?? false)
+        {
+            <a class="tile-link" href="/Identity/Account/Manage/Index">
+                <div class="tile"><div class="tile-inner">👤 Nastavení profilu</div></div>
+            </a>
+        }
     </div>
 </div>
