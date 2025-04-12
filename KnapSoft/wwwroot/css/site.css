@@ -272,10 +272,11 @@ a.tile-link {
 }
 
 .logo-final-position {
-    position: absolute;
-    top: clamp(20px, 5vh, 40px);
-    left: 50%;
-    transform: translateX(-50%);
+    /* position: absolute; */
+    top: unset;
+    left: unset;
+    transform: none;
+    margin-bottom: 1rem;
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
     font-size: clamp(1.5rem, 4vw, 2.5rem);
